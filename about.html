@@ -25,6 +25,16 @@
             font-weight: 600;
             margin: 5px;
         }
+        @media (max-width: 900px) {
+            .card-grid[style*="repeat(4, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media (max-width: 500px) {
+            .card-grid[style*="repeat(4, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -104,9 +114,9 @@
                 To turn your "sent" folder into a "revenue" folder.
             </p>
             
-            <!-- Team Members (preserved) -->
+            <!-- Team Members (4 members total) -->
             <h3 style="color: #003a70; font-size: 1.8rem; margin: 50px 0 20px;">Meet the Team</h3>
-            <div class="card-grid">
+            <div class="card-grid" style="grid-template-columns: repeat(4, 1fr);">
                 <div class="team-card">
                     <i class="fas fa-user-tie"></i>
                     <h3>Adolf</h3>
@@ -125,7 +135,18 @@
                     <p style="color: #006fba; font-weight: 600;">Automation Lead</p>
                     <p style="font-size: 0.95rem;">Python wizard, CRM integration expert. 99.8% deliverability guarantee.</p>
                 </div>
+                <div class="team-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Carlos</h3>
+                    <p style="color: #006fba; font-weight: 600;">Client Acquisition Manager</p>
+                    <p style="font-size: 0.95rem;">Strategic partnership builder. 7+ years connecting brands with revenue-driving email solutions.</p>
+                </div>
             </div>
+            
+            <!-- Optional: Add a note about the team -->
+            <p style="text-align: center; margin-top: 30px; color: #4b5563; font-style: italic;">
+                Together, we've helped over 200 brands transform their email marketing from spammy blasts to revenue-generating conversations.
+            </p>
         </div>
     </main>
 
