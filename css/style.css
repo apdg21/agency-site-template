@@ -108,6 +108,14 @@ body {
     text-decoration: none;
 }
 
+.footer .logo {
+	background: linear-gradient(145deg, #0057b3, #00b4b3) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+
+}
+	
+
 .footer a:hover { 
     color: white; 
 }
