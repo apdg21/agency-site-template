@@ -1,5 +1,57 @@
 // Main JavaScript file for InboxIgnite
 
+// Hamburger menu functionality
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+    
+    // Create overlay if it doesn't exist
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        document.body.appendChild(overlay);
+    }
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('nav-open');
+        });
+    }
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('nav-open');
+        });
+    });
+    
+    // Close menu when clicking overlay
+    overlay.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('nav-open');
+    });
+    
+    // Close menu on window resize if open
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('nav-open');
+        }
+    });
+}
+
 // Template preview functionality (used on templates page)
 function initTemplatePreview() {
     const bothBtn = document.getElementById('viewBothBtn');
@@ -94,7 +146,7 @@ function initContactForm() {
 // Set active navigation based on current page
 function setActiveNav() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-links a');
     
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
@@ -108,6 +160,7 @@ function setActiveNav() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    initHamburgerMenu();
     setActiveNav();
     initTemplatePreview();
     initContactForm();
