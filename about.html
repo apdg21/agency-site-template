@@ -8,6 +8,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .star-method {
+            background: #f0f7ff;
+            border-left: 6px solid #006fba;
+            padding: 25px;
+            border-radius: 16px;
+            margin: 30px 0;
+        }
+        .metric-badge {
+            display: inline-block;
+            background: #003a70;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -19,7 +37,7 @@
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link">Services</a>
-                <a href="about.html" class="nav-link">About us</a>
+                <a href="about.html" class="nav-link active">About us</a>
                 <a href="templates.html" class="nav-link">Templates</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
@@ -30,37 +48,83 @@
     <!-- Main Content -->
     <main class="container">
         <div class="page-header">
-            <h1>About us</h1>
+            <h1>We Are Obsessed With The Metrics That Matter.</h1>
         </div>
         
-        <div style="background: white; border-radius: 40px; padding: 40px;">
-            <p style="font-size: 1.3rem; margin-bottom: 20px;">We started InboxIgnite because email isn't dead — bad email is. </p>
-            <p style="font-size: 1.1rem; color: #2c3e50; margin-bottom: 30px;">Founded in 2020, we're a tight team of copywriters, designers and email developers who believe that every inbox is an opportunity to delight. We've helped over 200 brands transform their email marketing from spammy blasts to conversations customers actually want.</p>
+        <div style="background: white; border-radius: 40px; padding: 50px;">
+            <p style="font-size: 1.3rem; line-height: 1.8; color: #1e2b3c; margin-bottom: 30px;">
+                At InboxIgnite, we believe that email marketing is a blend of art and rigorous analytics. Drawing inspiration from the precision of ResumePro, we realized that most marketing agencies focus on "vanity metrics" like open rates and fancy designs.
+            </p>
             
-            <div class="card-grid" style="margin-top: 40px;">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #2c3e50; margin-bottom: 30px;">
+                <strong>We do things differently.</strong>
+            </p>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                We are a team of certified strategists, developers, and copywriters who view your email list as your company's most valuable asset. Our approach is rooted in the <strong>STAR method (Situation, Task, Action, Result)</strong>. We don't just "write blog posts" or "send emails"—we engineer campaigns that decrease churn by 19%, increase click-to-open rates by 35%, and drive measurable business growth.
+            </p>
+            
+            <div class="star-method">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-around;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #006fba;">S</div>
+                        <div style="font-weight: 600;">Situation</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #006fba;">T</div>
+                        <div style="font-weight: 600;">Task</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #006fba;">A</div>
+                        <div style="font-weight: 600;">Action</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #006fba;">R</div>
+                        <div style="font-weight: 600;">Result</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="color: #003a70; font-size: 1.8rem; margin: 40px 0 20px;">Why Choose Us?</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">
+                Because we know that in 2026, "generic" is a death sentence. Whether it's navigating HIPAA compliance, mastering AI-driven personalization, or ensuring 99.8% inbox placement, we bring a level of technical depth that typical agencies can't match.
+            </p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 30px 0;">
+                <span class="metric-badge"><i class="fas fa-check"></i> 99.8% inbox placement</span>
+                <span class="metric-badge"><i class="fas fa-check"></i> 19% churn reduction</span>
+                <span class="metric-badge"><i class="fas fa-check"></i> 35% CTR increase</span>
+                <span class="metric-badge"><i class="fas fa-check"></i> HIPAA compliant</span>
+                <span class="metric-badge"><i class="fas fa-check"></i> AI personalization</span>
+                <span class="metric-badge"><i class="fas fa-check"></i> Klaviyo/HubSpot experts</span>
+            </div>
+            
+            <h3 style="color: #003a70; font-size: 1.8rem; margin: 50px 0 20px;">Our Mission</h3>
+            <p style="font-size: 1.3rem; font-weight: 600; color: #006fba; margin-bottom: 30px;">
+                To turn your "sent" folder into a "revenue" folder.
+            </p>
+            
+            <!-- Team Members (preserved) -->
+            <h3 style="color: #003a70; font-size: 1.8rem; margin: 50px 0 20px;">Meet the Team</h3>
+            <div class="card-grid">
                 <div class="team-card">
                     <i class="fas fa-user-tie"></i>
                     <h3>Adolf</h3>
-                    <p>Chief Strategist</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">10+ years in email marketing, ex-HubSpot</p>
+                    <p style="color: #006fba; font-weight: 600;">Chief Strategist</p>
+                    <p style="font-size: 0.95rem;">10+ years in email marketing, ex-HubSpot. STAR method certified.</p>
                 </div>
                 <div class="team-card">
                     <i class="fas fa-user-nurse"></i>
                     <h3>Angelo</h3>
-                    <p>Creative Director</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Award-winning designer, obsessed with pixels</p>
+                    <p style="color: #006fba; font-weight: 600;">Creative Director</p>
+                    <p style="font-size: 0.95rem;">Award-winning designer. Obsessed with conversion-focused layouts.</p>
                 </div>
                 <div class="team-card">
                     <i class="fas fa-user-secret"></i>
                     <h3>Wella</h3>
-                    <p>Automation Lead</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Python wizard, CRM integration expert</p>
+                    <p style="color: #006fba; font-weight: 600;">Automation Lead</p>
+                    <p style="font-size: 0.95rem;">Python wizard, CRM integration expert. 99.8% deliverability guarantee.</p>
                 </div>
-            </div>
-            
-            <div style="margin-top: 40px; padding: 30px; background: #f0f7ff; border-radius: 30px;">
-                <h3 style="color: #003a70;">Our mission</h3>
-                <p style="margin-top: 15px;">To make every email feel like a personal note from a friend. We combine data with humanity, automation with authenticity.</p>
             </div>
         </div>
     </main>
