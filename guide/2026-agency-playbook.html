@@ -300,6 +300,56 @@
             .step-icon { width: 32px; height: 32px; }
             .footnote { flex-direction: column; gap: 0.5rem; }
         }
+		/* styles for the home link — add inside the existing <style> block of each page */
+  .playbook-header {
+    position: relative; /* makes absolute positioning of the home link relative to header */
+  }
+
+  .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+    border-radius: 60px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: 0.15s ease;
+    margin-bottom: 1.5rem;  /* space below on mobile */
+  }
+
+  .home-link:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .home-link i {
+    font-size: 1.2rem;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  /* optional reposition on larger screens — can be top-right if you prefer */
+  @media (min-width: 800px) {
+    .home-link {
+      position: absolute;
+      top: 2rem;
+      right: 3rem;
+      margin-bottom: 0;   /* override mobile margin */
+    }
+  }
+
+  /* for smaller header padding, adjust right/top values */
+  @media (max-width: 800px) {
+    .home-link {
+      margin-bottom: 1rem;  /* keep some space on mobile */
+    }
+  }
+
     </style>
 </head>
 <body>
@@ -307,6 +357,9 @@
     <div class="playbook-header">
         <div class="badge-2026"> strategy 2026 — explained for everyone</div>
         <h1>How we find, win, and onboard <span>high-end email clients</span> without guessing</h1>
+		<a href="index.html" class="home-link">
+         <i>←</i> Home
+        </a> 
         <div class="subhead">A complete walkthrough with plain‑language explanations — no jargon left behind.</div>
     </div>
 
