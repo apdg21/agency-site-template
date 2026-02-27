@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Gap Analysis · find revenue leaks · 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0d2b41, #1d3d5c);
+            color: white;
+            padding: 2.5rem 3rem;
+            position: relative;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.15s ease;
+            margin-bottom: 1.5rem;
+        }
+        .home-link:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .home-link i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+        @media (min-width: 800px) {
+            .home-link {
+                position: absolute;
+                top: 2rem;
+                right: 3rem;
+                margin-bottom: 0;
+            }
+        }
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 750px;
+            margin-top: 0.5rem;
+        }
+        .header h1 span {
+            color: #b5e0ff;
+            border-bottom: 2px solid #4f93d0;
+        }
+        .header .sub {
+            font-size: 1.2rem;
+            color: #c9dfff;
+            margin-top: 1.2rem;
+            max-width: 650px;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+        }
+        .badge {
+            background: #3069a8;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+        }
+        .content {
+            padding: 3rem 3rem 3.5rem;
+        }
+        .lead-quote {
+            font-size: 1.2rem;
+            background: #e4f0fc;
+            border-radius: 32px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid #1f5192;
+            font-weight: 500;
+            color: #10345c;
+        }
+        .section {
+            margin-bottom: 3.2rem;
+        }
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #10345c;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section h2 span {
+            background: #1a4975;
+            color: white;
+            font-size: 1.2rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .subhead {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1rem 0;
+            color: #163a58;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+        .test-card {
+            background: #f7fbff;
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid #d1e2f5;
+            box-shadow: 0 8px 14px rgba(0,32,64,0.04);
+        }
+        .test-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1b3d60;
+            margin-bottom: 0.8rem;
+        }
+        .test-card .gap {
+            background: #daeafc;
+            border-radius: 30px;
+            padding: 0.7rem 1.2rem;
+            margin: 1rem 0 0.8rem;
+            font-weight: 600;
+            color: #062c4a;
+            border-left: 4px solid #1f5192;
+        }
+        .script-box {
+            background: #f1eef9;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            border: 2px solid #6d8eb0;
+            margin: 2rem 0 1.5rem;
+            font-family: 'Inter', monospace;
+        }
+        .script-box p {
+            margin-bottom: 0.8rem;
+        }
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f5faff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 18px rgba(0,30,60,0.06);
+            margin: 2rem 0 0.5rem;
+        }
+        .diagnostic-table th {
+            background: #1a3d62;
+            color: white;
+            font-weight: 600;
+            padding: 1.2rem 1rem;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .diagnostic-table td {
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid #d2e2f2;
+            vertical-align: top;
+        }
+        .diagnostic-table tr:last-child td {
+            border-bottom: none;
+        }
+        .diagnostic-table .hole {
+            font-weight: 700;
+            color: #10345c;
+        }
+        .diagnostic-table .impact {
+            color: #b13e3e;
+            font-weight: 500;
+        }
+        .diagnostic-table .fix {
+            color: #11744a;
+            font-weight: 500;
+        }
+        @media (max-width: 700px) {
+            .header { padding: 2rem 1.8rem; }
+            .header h1 { font-size: 2rem; }
+            .content { padding: 2rem 1.5rem; }
+            .section h2 { font-size: 1.7rem; }
+            .diagnostic-table, .diagnostic-table thead, .diagnostic-table tbody, .diagnostic-table tr, .diagnostic-table th, .diagnostic-table td {
+                display: block;
+            }
+            .diagnostic-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .diagnostic-table tr {
+                background: #ffffff;
+                border: 1px solid #cbdae9;
+                border-radius: 24px;
+                margin-bottom: 1.2rem;
+                padding: 1.2rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            }
+            .diagnostic-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 0.8rem 0.5rem;
+                border-top: none;
+                border-bottom: 1px dashed #d0dfee;
+            }
+            .diagnostic-table td:last-of-type {
+                border-bottom: none;
+            }
+            .diagnostic-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1f3f64;
+                width: 40%;
+                text-align: left;
+                padding-right: 1rem;
+            }
+        }
+        .footer-note {
+            background: #eaf2fc;
+            padding: 1.5rem 3rem;
+            font-size: 0.95rem;
+            color: #284a70;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid #bed1e8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="index.html" class="home-link"><i>←</i> Home</a>
+        <div class="badge">forensic auditing · 2026</div>
+        <h1>Find the <span>revenue leaks</span> before you pitch</h1>
+        <div class="sub">Ghost shopping + technical health + the helpful‑peer approach</div>
+    </div>
+
+    <div class="content">
+        <div class="lead-quote">
+            🔎 To find a "hole" in a potential client's email strategy, think like a customer first and a forensic auditor second. You are looking for <strong>Revenue Leaks</strong>—places where money falls out because of poor automation or technical neglect.
+        </div>
+
+        <!-- 1. Ghost Shopping Audit -->
+        <div class="section">
+            <h2><span>1</span> The "Ghost Shopping" Audit (Front-End)</h2>
+            <p style="margin-bottom: 1.2rem;">The easiest way to find immediate gaps without backend access.</p>
+            <div class="card-grid">
+                <div class="test-card">
+                    <h3>📭 The Opt-In Test</h3>
+                    <p>Does a pop-up appear? Is it delayed (good) or immediate (annoying)? Does it offer a lead magnet?</p>
+                    <div class="gap">🚫 No pop-up = 60% less list growth</div>
+                </div>
+                <div class="test-card">
+                    <h3>👋 The Welcome Flow</h3>
+                    <p>Sign up. Do you get an email within 2 minutes? If it takes an hour, they lose the "moment of highest intent."</p>
+                    <div class="gap">⏳ Delayed welcome = cold leads</div>
+                </div>
+                <div class="test-card">
+                    <h3>🛒 Cart Abandonment</h3>
+                    <p>Add item, enter email, close tab. Do they email within 1 hour?</p>
+                    <div class="gap">⚠️ Missing #1 revenue automation</div>
+                </div>
+                <div class="test-card">
+                    <h3>👀 Browse Abandonment</h3>
+                    <p>Look at a product for 30 seconds, then leave. Do they email about that specific product?</p>
+                    <div class="gap">📉 No behavioral triggers = missed sales</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Technical Health Check -->
+        <div class="section">
+            <h2><span>2</span> Technical "Health Check" (Back-End)</h2>
+            <p>Use free tools like <strong>MxToolbox, DNSChecker, or Mail-Tester.com</strong> to check deliverability from the outside.</p>
+            <div class="card-grid" style="margin-top: 1.5rem;">
+                <div class="test-card">
+                    <h3>🔐 Authentication (SPF/DKIM/DMARC)</h3>
+                    <p>Google & Yahoo strictly block senders without these records.</p>
+                    <div class="gap">If DMARC isn't "p=quarantine" or "p=reject", emails hit Promo/Spam.</div>
+                </div>
+                <div class="test-card">
+                    <h3>📧 The "Promo Tab" Scan</h3>
+                    <p>Are their emails 90% images and 10% text?</p>
+                    <div class="gap">Image-heavy triggers spam filters, slow to load.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. The Right Approach -->
+        <div class="section">
+            <h2><span>3</span> The "Right Approach" to Handling the Lead</h2>
+            <p>Never say "your email is bad." Use the <strong>Lost Opportunity</strong> approach.</p>
+            <div class="script-box">
+                <p style="font-weight: 700; margin-bottom: 1rem;">📨 The "Helpful Peer" Method</p>
+                <p><em>"Hi {{Name}}, I was checking out your store and noticed something interesting. I signed up for the list but didn't receive a welcome code for nearly two hours.</em></p>
+                <p><em>Usually, for brands at your scale, that delay results in about a 12-15% drop in first-purchase conversions because the 'buying itch' fades. I’ve seen this happen with other brands in {{Niche}}, and it’s usually just a simple API delay or a trigger setting.</em></p>
+                <p><em>I’d be happy to show you how to tighten that up so you aren't leaving that revenue on the table. No strings attached—just thought you'd want to know."</em></p>
+            </div>
+        </div>
+
+        <!-- 4. Diagnostic Checklist Table -->
+        <div class="section">
+            <h2><span>4</span> Diagnostic Checklist for Your Audit</h2>
+            <table class="diagnostic-table">
+                <thead>
+                    <tr><th>The Hole</th><th>The Impact</th><th>The "Fix" You Sell</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="The Hole" class="hole">No "Welcome" series</td>
+                        <td data-label="The Impact" class="impact">Low conversion of new traffic</td>
+                        <td data-label="The Fix You Sell" class="fix">A 3‑part brand story flow</td>
+                    </tr>
+                    <tr>
+                        <td data-label="The Hole" class="hole">No "Abandoned Cart"</td>
+                        <td data-label="The Impact" class="impact">70% of potential sales lost</td>
+                        <td data-label="The Fix You Sell" class="fix">High‑urgency recovery flow</td>
+                    </tr>
+                    <tr>
+                        <td data-label="The Hole" class="hole">Missing DMARC</td>
+                        <td data-label="The Impact" class="impact">High spam rates / Low opens</td>
+                        <td data-label="The Fix You Sell" class="fix">Technical deliverability setup</td>
+                    </tr>
+                    <tr>
+                        <td data-label="The Hole" class="hole">No Segmentation</td>
+                        <td data-label="The Impact" class="impact">High unsubscribe rates</td>
+                        <td data-label="The Fix You Sell" class="fix">Persona‑based content flows</td>
+                    </tr>
+                    <tr>
+                        <td data-label="The Hole" class="hole">Generic Copy</td>
+                        <td data-label="The Impact" class="impact">Low Click‑Through Rate (CTR)</td>
+                        <td data-label="The Fix You Sell" class="fix">Direct‑response copywriting</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 1.8rem; background: #e2effa; padding: 1rem 1.8rem; border-radius: 40px;">
+                ✅ Use this table to quickly categorize the "Holes" you find and build your pitch.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>🔍 revenue leak detector · 2026</span>
+        <span>⚡ ghost shopping + technical audit + helpful script</span>
+    </div>
+</div>
+<p style="text-align: center; margin-top: 1.2rem; color: #4d6f94; font-size: 0.9rem;">gap analysis for high‑end email marketing · part of the playbook suite</p>
+</body>
+</html>
