@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Revenue Leak Report · [Client Name]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.25);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(145deg, #0b1f33, #173b58);
+            color: white;
+            padding: 2.5rem 3rem;
+            position: relative;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.15s ease;
+            margin-bottom: 1.5rem;
+        }
+        .home-link:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .home-link i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+        @media (min-width: 800px) {
+            .home-link {
+                position: absolute;
+                top: 2rem;
+                right: 3rem;
+                margin-bottom: 0;
+            }
+        }
+        .badge {
+            background: #c94f2b;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-top: 0.2rem;
+        }
+        .header h1 span {
+            color: #ffc49c;
+            border-bottom: 2px solid #f08c5a;
+        }
+        .prepared {
+            font-size: 1.1rem;
+            color: #c9dfff;
+            margin-top: 1.2rem;
+            background: rgba(255,255,255,0.06);
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .content {
+            padding: 2.8rem 3rem 3rem;
+        }
+        .executive-summary {
+            background: #f0f7fe;
+            border-radius: 30px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid #d3542d;
+            box-shadow: 0 6px 14px rgba(0,30,50,0.05);
+        }
+        .executive-summary h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f2f4a;
+            margin-bottom: 1.2rem;
+        }
+        .gap {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #d4e4f5;
+            box-shadow: 0 12px 22px -12px rgba(25,60,90,0.12);
+        }
+        .gap:last-child {
+            margin-bottom: 0;
+        }
+        .gap h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #1a3f61;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .gap h3 span {
+            background: #234d77;
+            color: white;
+            font-size: 1rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .gap-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .finding {
+            background: #ecf5fd;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+        }
+        .finding h4, .science h4, .leak h4, .fix h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #113452;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .science {
+            background: #e1effa;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+        }
+        .leak {
+            background: #ffeae1;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+        }
+        .fix {
+            background: #dff0e4;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            grid-column: span 2;
+        }
+        .metric-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f4faff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 18px rgba(0,30,60,0.05);
+            margin: 2.5rem 0 2.2rem;
+        }
+        .metric-table th {
+            background: #1a3d62;
+            color: white;
+            font-weight: 600;
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .metric-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #d2e2f2;
+        }
+        .metric-table tr:last-child td {
+            border-bottom: none;
+        }
+        .metric-table .metric {
+            font-weight: 600;
+            color: #10345c;
+        }
+        .metric-table .current {
+            color: #a13d3d;
+            font-weight: 500;
+        }
+        .metric-table .goal {
+            color: #11744a;
+            font-weight: 600;
+        }
+        .next-steps {
+            background: #e5effb;
+            border-radius: 30px;
+            padding: 2rem 2.5rem;
+            margin: 2.8rem 0 1.5rem;
+            border: 2px dashed #1f5192;
+        }
+        .next-steps h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b2d49;
+            margin-bottom: 1rem;
+        }
+        .next-steps p {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .how-to-use {
+            background: #faf3e5;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0 0.5rem;
+            border-left: 8px solid #e9a23b;
+        }
+        .how-to-use h4 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #233f5c;
+            margin-bottom: 1.2rem;
+        }
+        .footer-note {
+            background: #eaf2fc;
+            padding: 1.5rem 3rem;
+            font-size: 0.95rem;
+            color: #284a70;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid #bed1e8;
+        }
+        @media (max-width: 700px) {
+            .header { padding: 2rem 1.5rem; }
+            .header h1 { font-size: 2.2rem; }
+            .content { padding: 2rem 1.5rem; }
+            .gap-grid { grid-template-columns: 1fr; }
+            .fix { grid-column: span 1; }
+            .metric-table, .metric-table thead, .metric-table tbody, .metric-table tr, .metric-table th, .metric-table td {
+                display: block;
+            }
+            .metric-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .metric-table tr {
+                background: #ffffff;
+                border: 1px solid #cbdae9;
+                border-radius: 24px;
+                margin-bottom: 1.2rem;
+                padding: 1.2rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            }
+            .metric-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 0.5rem;
+                border-top: none;
+                border-bottom: 1px dashed #d0dfee;
+            }
+            .metric-table td:last-of-type {
+                border-bottom: none;
+            }
+            .metric-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1f3f64;
+                width: 45%;
+                text-align: left;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="index.html" class="home-link"><i>←</i> Home</a>
+        <div class="badge">confidential · revenue leak report</div>
+        <h1><span>[CLIENT NAME]</span> // Email Revenue Leak Report</h1>
+        <div class="prepared">Prepared by: [Your Name/Agency] · February 2026</div>
+    </div>
+
+    <div class="content">
+        <!-- Executive summary -->
+        <div class="executive-summary">
+            <h2>📋 Executive Summary</h2>
+            <p style="font-size: 1.15rem; margin-bottom: 1rem;">After a forensic review of <strong>[Client Name]</strong>’s current email marketing ecosystem, we have identified <strong>[Number] critical gaps</strong>. Based on your current traffic and estimated average order value (AOV), these "leaks" are resulting in an estimated <strong>$[Amount] in missed monthly revenue</strong>.</p>
+        </div>
+
+        <!-- Gap 1 -->
+        <div class="gap">
+            <h3>Gap 1: The "High-Intent" Abandonment Leak <span>🔴 urgent</span></h3>
+            <div class="gap-grid">
+                <div class="finding"><h4>🔎 The Finding</h4> No active Browse Abandonment or Cart Abandonment flow detected.</div>
+                <div class="science"><h4>🧪 The Science</h4> 70% of shoppers abandon carts. Without a 3‑part recovery sequence, you are only capturing "the low‑hanging fruit."</div>
+                <div class="leak"><h4>💧 The Leak</h4> Based on your site traffic, you are likely losing <strong>$[Amount] per month</strong> to "silent" bounces.</div>
+                <div class="fix"><h4>🔧 The Fix</h4> Implement a logic‑based recovery flow with dynamic product blocks and a "Last Chance" SMS trigger.</div>
+            </div>
+        </div>
+
+        <!-- Gap 2 -->
+        <div class="gap">
+            <h3>Gap 2: The "Ghost" Welcome Experience</h3>
+            <div class="gap-grid">
+                <div class="finding"><h4>🔎 The Finding</h4> The Welcome Email arrived <strong>[X minutes/hours] late</strong> and lacked a clear Call to Action (CTA).</div>
+                <div class="science"><h4>🧪 The Science</h4> Subscribers are <strong>8x more likely to buy</strong> in the first 15 minutes of joining a list than at any other time.</div>
+                <div class="leak"><h4>💧 The Leak</h4> Your current "Time‑to‑Inbox" is killing the honeymoon phase.</div>
+                <div class="fix"><h4>🔧 The Fix</h4> A 4‑part "Brand Story" sequence that builds trust and pushes the first purchase within 48 hours.</div>
+            </div>
+        </div>
+
+        <!-- Gap 3 -->
+        <div class="gap">
+            <h3>Gap 3: Technical Deliverability & Inbox Placement</h3>
+            <div class="gap-grid">
+                <div class="finding"><h4>🔎 The Finding</h4> Missing/Incomplete DMARC and SPF records.</div>
+                <div class="science"><h4>🧪 The Science</h4> As of the 2024/2025 Google/Yahoo updates, lack of these records sends your emails straight to the "Promotions" or "Spam" folders.</div>
+                <div class="leak"><h4>💧 The Leak</h4> Your "Open Rates" are likely suppressed by <strong>10–15%</strong> due to poor sender reputation.</div>
+                <div class="fix"><h4>🔧 The Fix</h4> Full DNS authentication and a 14‑day "Domain Warming" period to reset your reputation.</div>
+            </div>
+        </div>
+
+        <!-- Monthly ROI table -->
+        <h2 style="font-size: 1.9rem; margin: 2.8rem 0 1rem; color: #0f2e49;">📊 The Monthly ROI Opportunity</h2>
+        <p style="margin-bottom: 1.2rem;">By plugging these leaks, we project the following shift in your email performance:</p>
+        <table class="metric-table">
+            <thead>
+                <tr><th>Metric</th><th>Current Status</th><th>Post-Optimization Goal</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Metric" class="metric">Email Rev % of Total</td>
+                    <td data-label="Current Status" class="current">[Estimated 10%]</td>
+                    <td data-label="Post-Optimization Goal" class="goal">30% - 35%</td>
+                </tr>
+                <tr>
+                    <td data-label="Metric" class="metric">List Growth Rate</td>
+                    <td data-label="Current Status" class="current">[Estimated 1.5%]</td>
+                    <td data-label="Post-Optimization Goal" class="goal">5% - 7%</td>
+                </tr>
+                <tr>
+                    <td data-label="Metric" class="metric">Recovery Rate</td>
+                    <td data-label="Current Status" class="current">[Low/None]</td>
+                    <td data-label="Post-Optimization Goal" class="goal">12% Recovery</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h3>⏩ Next Steps: Plugging the Leaks</h3>
+            <p>These gaps represent the <strong>"low‑hanging fruit" for [Client Name]</strong>. I have already mapped out the wireframes for the new flows.</p>
+            <p style="background: white; padding: 1rem 1.8rem; border-radius: 60px; display: inline-block; font-weight: 600;">👉 Are you open to a 15‑minute walkthrough of the implementation roadmap?</p>
+        </div>
+
+        <!-- How to use this (internal / pro tip) -->
+        <div class="how-to-use">
+            <h4>📌 How to use this "Right"</h4>
+            <ul class="bullet-list" style="list-style: none; margin-top: 1.2rem;">
+                <li style="margin-bottom: 1rem; padding-left: 1.8rem; position: relative;"><strong style="color: #1f5192;">Estimate the Numbers:</strong> You don’t need their exact data. Use industry averages. If they sell a $100 product and have 50k Instagram followers, you can safely assume they are losing thousands.</li>
+                <li style="margin-bottom: 1rem; padding-left: 1.8rem; position: relative;"><strong style="color: #1f5192;">Visuals Matter:</strong> Take a screenshot of the "Spam" folder or a screenshot of their missing DMARC record from a tool like MXToolbox and paste it directly into the report. It makes the "Hole" feel real.</li>
+                <li style="margin-bottom: 1rem; padding-left: 1.8rem; position: relative;"><strong style="color: #1f5192;">The "Loom" Intro:</strong> Send the link to this report along with a 60‑second video saying: "Hey [Name], I made this report for you. Page 2 shows exactly why your emails might be hitting spam. Take a look and let me know if you want the fix."</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>🔎 revenue leak report · [Client Name] · confidential</span>
+        <span>⚡ prepared by [Your Name/Agency] · 2026</span>
+    </div>
+</div>
+<p style="text-align: center; margin-top: 1.2rem; color: #4d6f94; font-size: 0.9rem;">high‑conversion asset · part of the 2026 playbook suite</p>
+</body>
+</html>
