@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Closing scripts · two approaches · 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.25);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(145deg, #0d2538, #1f3e5c);
+            color: white;
+            padding: 2.2rem 3rem;
+            position: relative;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.15s ease;
+            margin-bottom: 1rem;
+        }
+        .home-link:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .home-link i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+        @media (min-width: 800px) {
+            .home-link {
+                position: absolute;
+                top: 2rem;
+                right: 3rem;
+                margin-bottom: 0;
+            }
+        }
+        .badge {
+            background: #c44536;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 700px;
+        }
+        .header h1 span {
+            color: #ffd5b5;
+            border-bottom: 2px solid #e9895f;
+        }
+        .subhead {
+            font-size: 1.15rem;
+            color: #c9dfff;
+            margin-top: 1.2rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .content {
+            padding: 3rem 3rem 3.5rem;
+        }
+        .intro-quote {
+            background: #eaf2fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2.8rem;
+            border-left: 6px solid #1f5192;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #10345c;
+        }
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .approach-card {
+            background: #f9fcff;
+            border-radius: 2.2rem;
+            border: 1px solid #d1e3f5;
+            overflow: hidden;
+            box-shadow: 0 15px 25px -12px rgba(22,55,90,0.15);
+            transition: all 0.2s ease;
+        }
+        .approach-card:hover {
+            transform: translateY(-4px);
+            border-color: #8faecf;
+            box-shadow: 0 25px 35px -16px #1b385b;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #1b3b5a, #2b5580);
+            color: white;
+            padding: 1.8rem 2rem;
+        }
+        .card-header h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+        }
+        .card-header .pill {
+            background: #f0b400;
+            color: #1d3d5e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .script-block {
+            background: #eef4fb;
+            border-radius: 24px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2f6eb0;
+        }
+        .script-block p {
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+        .script-block .speaker {
+            font-weight: 700;
+            color: #10345c;
+            font-style: normal;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #113452;
+            margin: 1.5rem 0 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pillar-list {
+            list-style: none;
+            background: #f1f7ff;
+            border-radius: 20px;
+            padding: 1.5rem 1.8rem;
+        }
+        .pillar-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.6rem;
+            position: relative;
+        }
+        .pillar-list li::before {
+            content: "•";
+            color: #1d62a0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+        .email-preview {
+            background: #ffffff;
+            border: 1px solid #bdd3ec;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0 0.5rem;
+            box-shadow: 0 6px 14px rgba(0,30,50,0.03);
+        }
+        .objection-box {
+            background: #fef5e7;
+            border-left: 6px solid #e9a23b;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .power-move {
+            background: #dff0e4;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            border: 2px dashed #11744a;
+        }
+        .footer-note {
+            background: #eaf2fc;
+            padding: 1.5rem 3rem;
+            font-size: 0.95rem;
+            color: #284a70;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid #bed1e8;
+        }
+        @media (max-width: 700px) {
+            .header { padding: 2rem 1.5rem; }
+            .header h1 { font-size: 2rem; }
+            .content { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="index.html" class="home-link"><i>←</i> Home</a>
+        <div class="badge">closing toolkit · 2026</div>
+        <h1>Two approaches: <span>price with confidence</span>, sign with ease</h1>
+        <div class="subhead">Consultative close + service agreement structure + objection handlers</div>
+    </div>
+
+    <div class="content">
+        <div class="intro-quote">
+            When a prospect asks, <strong>"How much does it cost?"</strong>, they are actually asking, <em>"Is this investment worth the risk?"</em> Do not blurt out a number. Treat this as the "Consultative Close."
+        </div>
+
+        <!-- TWO APPROACHES SIDE BY SIDE -->
+        <div class="approach-grid">
+            
+            <!-- APPROACH 1: Value-Based Pivot & Agreement -->
+            <div class="approach-card">
+                <div class="card-header">
+                    <h2>Approach 1</h2>
+                    <div class="pill">value‑based pivot</div>
+                </div>
+                <div class="card-body">
+                    <div class="script-block">
+                        <p><span class="speaker">Client:</span> "This looks great. How much do you charge?"</p>
+                        <p><span class="speaker">You:</span> "That’s a great question, {{Name}}. Honestly, pricing depends on how aggressive we want to get with fixing the revenue leaks we discussed. Based on your current volume, we have three ways to approach this:</p>
+                        <p><strong>The Foundation (The 'Fix'):</strong> We handle the technical deliverability, the DMARC/SPF setup, and the primary welcome flow. This stops the bleeding.</p>
+                        <p><strong>The Growth Engine (The 'Strategy'):</strong> Everything in the Foundation, plus full‑funnel management (Abandoned Cart, Browse Abandonment, Weekly Campaigns) and A/B testing. This is where we see the 30% revenue lift.</p>
+                        <p><strong>The Scale Partner (The 'Full Scope'):</strong> Everything above, plus list building, advanced segmentation, and SMS integration. This is designed for aggressive scaling.</p>
+                        <p>I don't want to overcharge you for what you don't need, but I also don't want to leave money on the table. Which of those three levels of impact sounds like the right fit for your goals this quarter?"</p>
+                    </div>
+                    <div class="section-title">📄 The 5 Pillars of Your Agreement</div>
+                    <ul class="pillar-list">
+                        <li><strong>Scope of Work:</strong> Specific flows you build (Welcome, Cart, Post‑Purchase).</li>
+                        <li><strong>Deliverables Schedule:</strong> "Drafts submitted by Friday; implementation within 48h of approval."</li>
+                        <li><strong>Access & Cooperation:</strong> Client must provide ESP/store access within 48h.</li>
+                        <li><strong>Exit Clause:</strong> 30‑day notice to terminate — makes them feel safe.</li>
+                        <li><strong>Payment Terms:</strong> 50% deposit, 50% upon final implementation.</li>
+                    </ul>
+                    <div class="email-preview">
+                        <p style="font-weight:700;">📨 Closing email (after the call):</p>
+                        <p><strong>Subject:</strong> Next steps for {{Company}} / Kickoff</p>
+                        <p>Hi {{Name}}, great call today. I’m excited to plug these revenue leaks. As discussed: <strong>The Scope:</strong> [3 main items] · <strong>The Investment:</strong> [Price] · <strong>Next Steps:</strong> Agreement attached. Once signed, you’ll get the deposit link and intake form. Aiming to have the Welcome Flow live by next Wednesday.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPROACH 2: Two-Phase + Objection Handling -->
+            <div class="approach-card">
+                <div class="card-header">
+                    <h2>Approach 2</h2>
+                    <div class="pill">two‑phase / revenue guarantee</div>
+                </div>
+                <div class="card-body">
+                    <div class="script-block">
+                        <p><span class="speaker">Client:</span> "This looks great. How much do you charge?"</p>
+                        <p><span class="speaker">You:</span> "Typically, to plug the leaks we found, we look at it in two phases.</p>
+                        <p><strong>Phase 1 is the Revenue Recovery Engine</strong> — we rebuild your technical deliverability and the 5 core automations (Welcome, Cart, Browse, Post‑Purchase, Win‑back). This usually pays for itself within the first 30–45 days.</p>
+                        <p><strong>Phase 2 is Growth Management</strong>, where we handle your weekly campaigns and list segmentation to hit that 30% revenue‑from‑email goal.</p>
+                        <p>Based on your current list size, the setup is a one‑time investment of $[Amount], and the ongoing management is $[Amount]/mo. If we hit even half of the targets in that report, you're looking at a [3x/5x/10x] ROI. Does that alignment work for your budget?"</p>
+                    </div>
+
+                    <div class="section-title">📋 Simple & Modern Service Agreement</div>
+                    <ul class="pillar-list">
+                        <li><strong>Objective:</strong> Increase email revenue from [Current %] to [Target %] in 90 days.</li>
+                        <li><strong>Scope:</strong> DMARC setup, 5 core flows, [X] campaigns/week, monthly Loom reports.</li>
+                        <li><strong>Investment:</strong> Setup fee $[Amount] + monthly $[Amount].</li>
+                        <li><strong>Term:</strong> 90‑day initial commitment, then month‑to‑month. 30 days' notice.</li>
+                    </ul>
+
+                    <div class="objection-box">
+                        <p style="font-weight:700; margin-bottom:0.5rem;">🗣️ Handling "It’s too expensive"</p>
+                        <p><em>"I totally understand. Many clients felt the same. But if we don't fix that Cart Abandonment leak, you'll continue to lose roughly $[Amount] every month. My goal is to make sure your first 30 days with us covers our entire fee for the year. Would you rather start with just the 'Recovery Engine' setup first to prove the ROI?"</em></p>
+                    </div>
+
+                    <div class="power-move">
+                        <p style="font-weight:700; margin-bottom:0.5rem;">⚡ Your Agency "Power Move"</p>
+                        <p><strong>Revenue Guarantee / Performance Bonus:</strong> "If we don't increase your email revenue by at least 15% in the first 60 days, I'll work for free until we do."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final note -->
+        <div style="margin-top: 2.5rem; background: #e5effb; border-radius: 30px; padding: 1.5rem 2.2rem; text-align: center; border: 1px solid #1f5192;">
+            <p style="font-size: 1.2rem;">✅ You are now ready to <strong>hunt and close</strong>. Use these scripts, adapt them to your style, and always lead with value.</p>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>🔹 consultative close · value‑based pricing</span>
+        <span>📌 two approaches for 2026 · agency toolkit</span>
+    </div>
+</div>
+<p style="text-align: center; margin-top: 1rem; color: #4d6f94; font-size: 0.9rem;">closing scripts · part of the 2026 playbook suite</p>
+</body>
+</html>
