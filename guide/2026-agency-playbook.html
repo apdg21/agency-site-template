@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>2026 Agency Playbook · explained for the team</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,6 +156,7 @@
             border-left: 4px solid #1f5192;
             font-weight: 400;
         }
+        /* RESPONSIVE METRIC TABLE – fixes 4‑column overflow */
         .metric-table {
             background: white;
             border-radius: 18px;
@@ -179,6 +180,62 @@
         .revenue {
             font-weight: 700;
             color: #11744a;
+        }
+        /* mobile table transform – becomes cards */
+        @media (max-width: 640px) {
+            .metric-table, .metric-table thead, .metric-table tbody, .metric-table tr, .metric-table th, .metric-table td {
+                display: block;
+            }
+            .metric-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .metric-table tr {
+                background: #ffffff;
+                border: 1px solid #cbdae9;
+                border-radius: 18px;
+                margin-bottom: 1.2rem;
+                padding: 1.2rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            }
+            .metric-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 0.5rem;
+                border-top: none;
+                border-bottom: 1px dashed #d0dfee;
+            }
+            .metric-table td:last-of-type {
+                border-bottom: none;
+            }
+            .metric-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1f3f64;
+                width: 50%;
+                text-align: left;
+                padding-right: 1rem;
+            }
+            .metric-table td.revenue {
+                justify-content: space-between;
+            }
+            .metric-table td.revenue::before {
+                content: "Extra monthly revenue";
+                font-weight: 600;
+            }
+            .metric-table tr:last-child td.revenue {
+                font-size: 1.1rem;
+                background: #e8f3ea;
+                border-radius: 40px;
+                padding: 0.8rem 1rem;
+            }
         }
         .onboarding-steps {
             display: flex;
@@ -208,12 +265,40 @@
             flex-wrap: wrap;
             border-top: 1px solid #bed1e8;
         }
+        /* tablet & mobile layout for phase cards */
         @media (max-width: 800px) {
-            .playbook-header { padding: 2rem; }
-            .phases-grid { padding: 2rem; }
-            .phase-card { grid-template-columns: 1fr; }
-            .phase-left { font-size: 1.8rem; }
-            .step-block { padding: 1.5rem; }
+            .playbook-header { 
+                padding: 2rem 1.5rem; 
+            }
+            .playbook-header h1 {
+                font-size: 2rem;
+            }
+            .playbook-header .subhead {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .phases-grid { 
+                padding: 2rem 1.5rem; 
+            }
+            .phase-card { 
+                grid-template-columns: 1fr; 
+                gap: 0.8rem;
+            }
+            .phase-left { 
+                font-size: 1.8rem; 
+                margin-bottom: 0.4rem;
+            }
+            .step-block { 
+                padding: 1.5rem; 
+            }
+        }
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.5rem; }
+            .container { border-radius: 1.8rem; }
+            .playbook-header h1 { font-size: 1.8rem; }
+            .step-title { font-size: 1.2rem; }
+            .step-icon { width: 32px; height: 32px; }
+            .footnote { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -297,7 +382,7 @@
             </div>
         </div>
 
-        <!-- PHASE 3 — Closing proposal explained -->
+        <!-- PHASE 3 — Closing proposal explained (FIXED MOBILE 4‑COLUMN) -->
         <div class="phase-card">
             <div class="phase-left">
                 <span class="phase-num">Phase 03</span>
@@ -312,12 +397,30 @@
                     <div class="step-content">
                         <p>When they ask for a proposal, we don't just list what we do. We show them, in simple numbers, how we can increase their revenue. We base it on their actual email list size. Here's an example for a list of 50,000 subscribers:</p>
                         
+                        <!-- FIXED: table now responsive with data-label attributes -->
                         <table class="metric-table">
-                            <thead><tr><th>Metric</th><th>What they get now (approx.)</th><th>What we aim for</th><th>Extra monthly revenue</th></tr></thead>
+                            <thead>
+                                <tr><th>Metric</th><th>What they get now (approx.)</th><th>What we aim for</th><th>Extra monthly revenue</th></tr>
+                            </thead>
                             <tbody>
-                                <tr><td>Open rate</td><td>22%</td><td>35%</td><td class="revenue">+$4,500 / month</td></tr>
-                                <tr><td>Click‑through rate (CTR)</td><td>1.2%</td><td>2.5%</td><td class="revenue">+$8,200 / month</td></tr>
-                                <tr><td style="font-weight: 600;">Total estimated lift</td><td></td><td></td><td class="revenue">+$12,700 / month</td></tr>
+                                <tr>
+                                    <td data-label="Metric">Open rate</td>
+                                    <td data-label="What they get now">22%</td>
+                                    <td data-label="What we aim for">35%</td>
+                                    <td data-label="Extra monthly revenue" class="revenue">+$4,500 / month</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Metric">Click‑through rate (CTR)</td>
+                                    <td data-label="What they get now">1.2%</td>
+                                    <td data-label="What we aim for">2.5%</td>
+                                    <td data-label="Extra monthly revenue" class="revenue">+$8,200 / month</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Metric" style="font-weight: 600;">Total estimated lift</td>
+                                    <td data-label="What they get now"></td>
+                                    <td data-label="What we aim for"></td>
+                                    <td data-label="Extra monthly revenue" class="revenue">+$12,700 / month</td>
+                                </tr>
                             </tbody>
                         </table>
                         <p class="explain-box" style="margin-top: 1.2rem;">
