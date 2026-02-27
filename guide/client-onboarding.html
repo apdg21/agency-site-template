@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Client onboarding · 2026 white‑glove checklist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.25);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(145deg, #0b2b40, #1d4968);
+            color: white;
+            padding: 2.5rem 3rem;
+            position: relative;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.15s ease;
+            margin-bottom: 1rem;
+        }
+        .home-link:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .home-link i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+        @media (min-width: 800px) {
+            .home-link {
+                position: absolute;
+                top: 2rem;
+                right: 3rem;
+                margin-bottom: 0;
+            }
+        }
+        .badge {
+            background: #2f8f6b;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 750px;
+        }
+        .header h1 span {
+            color: #b5e0ff;
+            border-bottom: 2px solid #4f93d0;
+        }
+        .header .sub {
+            font-size: 1.2rem;
+            color: #c9dfff;
+            margin-top: 1.2rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .content {
+            padding: 3rem 3rem 3.5rem;
+        }
+        .lead-quote {
+            background: #eaf2fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2.8rem;
+            border-left: 6px solid #1f5192;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #10345c;
+        }
+        .step-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            margin: 2.5rem 0;
+        }
+        .step-card {
+            display: grid;
+            grid-template-columns: 0.8fr 2.5fr;
+            background: #f8fcff;
+            border-radius: 2rem;
+            border: 1px solid #d4e4f5;
+            overflow: hidden;
+            box-shadow: 0 10px 20px -10px rgba(0,30,50,0.1);
+        }
+        .step-left {
+            background: #1f3d60;
+            color: white;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .step-left .step-num {
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+        .step-left h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .step-right {
+            padding: 2rem 2.2rem;
+        }
+        .step-right h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #113452;
+            margin-bottom: 1rem;
+        }
+        .step-right .email-preview {
+            background: #ffffff;
+            border: 1px solid #bdd3ec;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            box-shadow: 0 4px 10px rgba(0,30,60,0.03);
+        }
+        .bullet-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .bullet-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.6rem;
+            position: relative;
+        }
+        .bullet-list li::before {
+            content: "•";
+            color: #1d62a0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+        .workflow-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f4faff;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 1.5rem 0 0.5rem;
+            box-shadow: 0 8px 16px rgba(0,30,60,0.05);
+        }
+        .workflow-table th {
+            background: #1a3d62;
+            color: white;
+            font-weight: 600;
+            padding: 1rem 1.2rem;
+            text-align: left;
+        }
+        .workflow-table td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #d2e2f2;
+        }
+        .workflow-table tr:last-child td {
+            border-bottom: none;
+        }
+        .tool-stack {
+            background: #f5f1e8;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0 1.5rem;
+            border-left: 8px solid #e9a23b;
+        }
+        .tool-stack h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #233f5c;
+            margin-bottom: 1.2rem;
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .tool-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.2rem;
+            font-weight: 600;
+            color: #1f4a7a;
+            border: 1px solid #9db9db;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .final-advice {
+            background: #dff0e4;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2.8rem 0 0.5rem;
+            border: 2px dashed #11744a;
+        }
+        .footer-note {
+            background: #eaf2fc;
+            padding: 1.5rem 3rem;
+            font-size: 0.95rem;
+            color: #284a70;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid #bed1e8;
+        }
+        @media (max-width: 700px) {
+            .header { padding: 2rem 1.5rem; }
+            .header h1 { font-size: 2rem; }
+            .content { padding: 2rem 1.5rem; }
+            .step-card { grid-template-columns: 1fr; }
+            .step-left { padding: 1.2rem 1.5rem; }
+            .step-left h3 { font-size: 1.6rem; }
+            .workflow-table, .workflow-table thead, .workflow-table tbody, .workflow-table tr, .workflow-table th, .workflow-table td {
+                display: block;
+            }
+            .workflow-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .workflow-table tr {
+                background: #ffffff;
+                border: 1px solid #cbdae9;
+                border-radius: 20px;
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+            .workflow-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.7rem 0.5rem;
+                border-top: none;
+                border-bottom: 1px dashed #d0dfee;
+            }
+            .workflow-table td:last-of-type {
+                border-bottom: none;
+            }
+            .workflow-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1f3f64;
+                width: 45%;
+                text-align: left;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="index.html" class="home-link"><i>←</i> Home</a>
+        <div class="badge">white‑glove onboarding · 2026</div>
+        <h1>Client <span>onboarding checklist</span> – automated, seamless, pro</h1>
+        <div class="sub">replace buyer’s remorse with instant confidence</div>
+    </div>
+
+    <div class="content">
+        <div class="lead-quote">
+            The moment a client signs a contract, they often experience <strong>"Buyer’s Remorse"</strong> if there is silence. To be a high-end agency in 2026, you must replace that silence with a seamless, automated onboarding experience that makes them feel they just hired a pro.
+        </div>
+
+        <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #0f2e49;">📋 The 5‑Step Onboarding Trigger</h2>
+
+        <div class="step-grid">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-left">
+                    <span class="step-num">Step 1</span>
+                    <h3>Success<br>Email</h3>
+                </div>
+                <div class="step-right">
+                    <h4>Immediate & Automated</h4>
+                    <div class="email-preview">
+                        <p><strong style="color: #004080;">Subject:</strong> Next Steps: Launching [Company Name]’s Revenue Engine</p>
+                        <p>Hi [Client Name],</p>
+                        <p>Thrilled to have you on board! To keep our 48‑hour kickoff timeline, please complete these 3 quick items:</p>
+                        <ul style="margin-left: 1.2rem;">
+                            <li><strong>The Brand DNA Form</strong> – (Link to Typeform/Tally)</li>
+                            <li><strong>Technical Access</strong> – (Link to a "How-To" Doc)</li>
+                            <li><strong>The Kickoff Call</strong> – (Calendly Link)</li>
+                        </ul>
+                        <p>Once these are in, my team starts the Technical Audit immediately.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-left">
+                    <span class="step-num">Step 2</span>
+                    <h3>Brand DNA<br>Intake</h3>
+                </div>
+                <div class="step-right">
+                    <h4>Collect voice, assets, best sellers</h4>
+                    <ul class="bullet-list">
+                        <li><strong>Brand Voice:</strong> Witty & Bold? Professional & Minimalist?</li>
+                        <li><strong>Customer Pain Points:</strong> Why buy? Why hesitate?</li>
+                        <li><strong>Logo/Assets:</strong> Google Drive/Dropbox with hex codes, high-res images.</li>
+                        <li><strong>Best Sellers:</strong> Top 3 products by margin (we prioritise these in flows).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-left">
+                    <span class="step-num">Step 3</span>
+                    <h3>Technical Access<br>Cheat Sheet</h3>
+                </div>
+                <div class="step-right">
+                    <h4>One‑pager / video: how to grant access</h4>
+                    <ul class="bullet-list">
+                        <li>Add a "Staff Member" in Shopify.</li>
+                        <li>Add a "Manager" in Klaviyo/Sendlane.</li>
+                        <li>Invite to Google Analytics.</li>
+                    </ul>
+                    <p style="margin-top: 1rem; background: #eef4fb; padding: 0.8rem 1.2rem; border-radius: 40px;"><strong>Pro Tip:</strong> Use ManageRecap or LastPass to share credentials securely.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <div class="step-left">
+                    <span class="step-num">Step 4</span>
+                    <h3>Internal<br>"Day 1" Workflow</h3>
+                </div>
+                <div class="step-right">
+                    <h4>While client fills forms, your team acts</h4>
+                    <table class="workflow-table">
+                        <thead><tr><th>Timeframe</th><th>Action Item</th><th>Goal</th></tr></thead>
+                        <tbody>
+                            <tr><td data-label="Timeframe">Hour 1</td><td data-label="Action Item">Create shared Slack/WhatsApp channel</td><td data-label="Goal">Instant communication</td></tr>
+                            <tr><td data-label="Timeframe">Hour 4</td><td data-label="Action Item">Set up Shared Notion Portal</td><td data-label="Goal">One "Source of Truth"</td></tr>
+                            <tr><td data-label="Timeframe">Day 1</td><td data-label="Action Item">Perform DNS Health Check</td><td data-label="Goal">Ensure not blacklisted</td></tr>
+                            <tr><td data-label="Timeframe">Day 2</td><td data-label="Action Item">Map out Flow Logic</td><td data-label="Goal">Visual map of new flows</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-card">
+                <div class="step-left">
+                    <span class="step-num">Step 5</span>
+                    <h3>Kickoff Call<br>Confidence</h3>
+                </div>
+                <div class="step-right">
+                    <h4>Transition from "Selling" to "Leading"</h4>
+                    <ul class="bullet-list">
+                        <li><strong>Agenda:</strong> Review Audit → Confirm 30‑Day Goal → Set approval expectations.</li>
+                        <li><strong>Golden Rule:</strong> Never leave without client knowing exactly when the first draft hits their inbox.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool stack -->
+        <div class="tool-stack">
+            <h3>🛠️ The "White Glove" Tool Stack</h3>
+            <p>Run this like a $10k/month agency with these tools:</p>
+            <div class="tool-grid">
+                <span class="tool-item">📌 GoHighLevel / Notion</span>
+                <span class="tool-item">🗺️ Miro (flow maps)</span>
+                <span class="tool-item">🎥 Loom (video updates)</span>
+                <span class="tool-item">🔐 LastPass / ManageRecap</span>
+                <span class="tool-item">📋 Typeform / Tally</span>
+                <span class="tool-item">📅 Calendly</span>
+            </div>
+        </div>
+
+        <!-- Final agency advice -->
+        <div class="final-advice">
+            <h3 style="font-size: 1.8rem; font-weight: 700; color: #0f2e49;">📈 Final Agency Advice</h3>
+            <p style="font-size: 1.15rem; margin: 1rem 0;">The secret to retaining clients for years is <strong>attribution</strong>. Every Friday, send a 2‑minute Loom video saying:</p>
+            <div style="background: white; border-radius: 28px; padding: 1.5rem 2rem; font-style: italic;">
+                "Hey [Name], this week we generated $[Amount] from the new Welcome Flow, which accounted for [X%] of your total sales. Here is the plan for next week..."
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 2.8rem; background: #e3efff; padding: 1rem; border-radius: 60px;">✅ Use this checklist to trigger the moment the signature hits the page.</p>
+    </div>
+
+    <div class="footer-note">
+        <span>🚀 client onboarding · 2026 white‑glove</span>
+        <span>⚡ replace silence with confidence</span>
+    </div>
+</div>
+<p style="text-align: center; margin-top: 1rem; color: #4d6f94; font-size: 0.9rem;">onboarding checklist · part of the 2026 playbook suite</p>
+</body>
+</html>
