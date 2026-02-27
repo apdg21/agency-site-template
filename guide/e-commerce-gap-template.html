@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>2026 Agency Playbook · e‑commerce gap template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.2rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.2);
+            overflow: hidden;
+        }
+        .playbook-header {
+            background: linear-gradient(140deg, #0d1b30, #1d3853);
+            color: white;
+            padding: 3rem 4rem 2.5rem;
+        }
+        .playbook-header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+        .playbook-header h1 span {
+            color: #b5e0ff;
+            border-bottom: 2px solid #4f93d0;
+        }
+        .playbook-header .subhead {
+            font-size: 1.2rem;
+            color: #c9dfff;
+            margin-top: 1.2rem;
+            max-width: 720px;
+            font-weight: 400;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
+        .badge-2026 {
+            background: #3069a8;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+        .phases-grid {
+            display: flex;
+            flex-direction: column;
+            padding: 3rem 4rem;
+            gap: 3rem;
+        }
+        .phase-card {
+            display: grid;
+            grid-template-columns: 0.8fr 2.5fr;
+            border-bottom: 1px solid #dae5f0;
+            padding-bottom: 2.5rem;
+        }
+        .phase-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .phase-left {
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: #10345c;
+        }
+        .phase-left .phase-num {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #54749c;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+        .phase-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .step-block {
+            background: #f8fcff;
+            border-radius: 1.8rem;
+            padding: 2rem 2.2rem;
+            border: 1px solid #dde9f5;
+            transition: 0.1s ease;
+        }
+        .step-title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.4rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #113452;
+        }
+        .step-icon {
+            background: #214973;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .step-content {
+            color: #1f3b57;
+            font-size: 1rem;
+        }
+        .bullet-list {
+            list-style: none;
+            margin-top: 1.2rem;
+        }
+        .bullet-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+        .bullet-list li::before {
+            content: "•";
+            color: #1d62a0;
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: absolute;
+            left: 0;
+            top: -0.2rem;
+        }
+        .explain-box {
+            background: #e5f0fe;
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0 0.2rem 0;
+            border-left: 4px solid #1f5192;
+            font-weight: 400;
+        }
+        /* standalone revenue gap template (separate section) */
+        .standalone-gap {
+            padding: 2rem 4rem 3rem 4rem;
+            background: #ffffff;
+            border-top: 2px solid #c9ddec;
+            border-bottom: 2px solid #c9ddec;
+        }
+        .gap-template {
+            background: #f3f9ff;
+            border-radius: 32px;
+            border: 2px solid #1f4c7a;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 20px 30px -10px rgba(21,67,107,0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .gap-template .template-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .template-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a2942;
+            letter-spacing: -0.02em;
+        }
+        .template-header .dtc-badge {
+            background: #c44536;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            text-transform: uppercase;
+        }
+        .target-line {
+            background: #e1ebf9;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            color: #10345c;
+        }
+        .email-preview {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            border: 1px solid #bed3ec;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 18px rgba(0,32,64,0.05);
+        }
+        .email-preview .subject {
+            font-weight: 700;
+            color: #00315e;
+            font-size: 1.2rem;
+            margin-bottom: 1.4rem;
+            background: #eef4fa;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px solid #8fb0d1;
+        }
+        .email-preview p {
+            margin-bottom: 1rem;
+        }
+        .email-preview .signature {
+            margin-top: 1.8rem;
+            border-top: 1px dashed #8caecf;
+            padding-top: 1.2rem;
+        }
+        .pro-tip-box {
+            background: #fbf3d5;
+            border-left: 6px solid #e9a23b;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+        .metric-table {
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #cbdae9;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 0.2rem;
+            font-size: 0.98rem;
+        }
+        .metric-table th {
+            background: #e2edfd;
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #10345c;
+        }
+        .metric-table td {
+            padding: 0.9rem 1rem;
+            border-top: 1px solid #d0dfee;
+        }
+        .revenue {
+            font-weight: 700;
+            color: #11744a;
+        }
+        /* mobile fix for metric table (if used) */
+        @media (max-width: 640px) {
+            .metric-table, .metric-table thead, .metric-table tbody, .metric-table tr, .metric-table th, .metric-table td {
+                display: block;
+            }
+            .metric-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .metric-table tr {
+                background: #ffffff;
+                border: 1px solid #cbdae9;
+                border-radius: 18px;
+                margin-bottom: 1.2rem;
+                padding: 1.2rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            }
+            .metric-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 0.5rem;
+                border-top: none;
+                border-bottom: 1px dashed #d0dfee;
+            }
+            .metric-table td:last-of-type {
+                border-bottom: none;
+            }
+            .metric-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #1f3f64;
+                width: 50%;
+                text-align: left;
+                padding-right: 1rem;
+            }
+        }
+        .onboarding-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .step-pill {
+            background: white;
+            border: 1px solid #b7cfec;
+            border-radius: 40px;
+            padding: 0.6rem 1.3rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f3f64;
+        }
+        .step-pill strong {
+            color: #0e4b8b;
+        }
+        .footnote {
+            background: #eaf2fc;
+            padding: 1.5rem 4rem;
+            font-size: 0.95rem;
+            color: #284a70;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid #bed1e8;
+        }
+        @media (max-width: 800px) {
+            .playbook-header { padding: 2rem 1.5rem; }
+            .playbook-header h1 { font-size: 2rem; }
+            .phases-grid { padding: 2rem 1.5rem; }
+            .phase-card { grid-template-columns: 1fr; }
+            .phase-left { font-size: 1.8rem; }
+            .step-block { padding: 1.5rem; }
+            .standalone-gap { padding: 2rem 1.5rem; }
+            .gap-template { padding: 1.8rem; }
+            .email-preview { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .template-header h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- header (same) -->
+    <div class="playbook-header">
+        <div class="badge-2026">strategy 2026 — e‑commerce deep dive</div>
+        <h1>How we find, win, and onboard <span>high-end email clients</span> without guessing</h1>
+        <div class="subhead">A complete walkthrough with plain‑language explanations — including the new DTC "Revenue Gap" outreach template.</div>
+    </div>
+
+    
+
+    <!-- ★ STANDALONE SECTION: Revenue Gap Template (completely separate) -->
+    <div class="standalone-gap">
+        <div class="gap-template">
+            <div class="template-header">
+                <h2>📦 The "Revenue Gap" outreach</h2>
+                <span class="dtc-badge">DTC e‑commerce</span>
+            </div>
+            
+            <div class="target-line">
+                🎯 Niche: Direct-to-Consumer · Target: Founder, Head of Marketing, E‑commerce Manager
+            </div>
+
+            <!-- email preview block -->
+            <div class="email-preview">
+                <div class="subject">📧 {{Company}}’s abandoned cart flow (and a quick fix)</div>
+                <p>Hi {{First Name}},</p>
+                <p>I was just checking out {{Company}} and actually ended up adding the <strong>{{Specific Product Name}}</strong> to my cart. I didn't finish the checkout because I wanted to see how your "Abandoned Cart" sequence handled the follow-up.</p>
+                <p>I noticed a couple of things that are likely costing you revenue right now:</p>
+                <p><strong>The Gap:</strong> Your first recovery email arrived 4 hours later. Industry data shows that sending the first touch within 15 minutes usually increases recovery rates by about 20%.</p>
+                <p><strong>The Miss:</strong> The email was text-only and missed a "Dynamic Product Block" to remind me what I almost bought.</p>
+                <p>I actually put together a 2-minute video audit showing exactly how I’d restructure this flow (and two others) to help {{Company}} capture the ~70% of shoppers who leave without buying.</p>
+                <p>Worth a 5-minute chat to see the audit?</p>
+                <div class="signature">
+                    Best,<br>
+                    {{Your Name}}<br>
+                    {{Agency Name}}
+                </div>
+            </div>
+
+            <!-- why this works -->
+            <div style="margin: 2rem 0 1rem;">
+                <h4 style="font-size: 1.2rem; margin-bottom: 1rem; color: #1a3a5a;">✅ Why this works (The 2026 Strategy)</h4>
+                <ul class="bullet-list" style="margin-top: 0;">
+                    <li><strong>The "In-Basket" Proof:</strong> You actually interacted with their store — proves you're not a bot.</li>
+                    <li><strong>The Micro-Audit:</strong> Pointing out a 4‑hour delay establishes instant authority.</li>
+                    <li><strong>The Loom Strategy:</strong> Mentioning a "video audit" creates curiosity — it's a gift, not a pitch.</li>
+                    <li><strong>The Low-Bar CTA:</strong> You ask to show an audit, not a "discovery call."</li>
+                </ul>
+            </div>
+
+            <!-- pro tip -->
+            <div class="pro-tip-box">
+                <strong style="font-size: 1.1rem;">🎥 Pro‑Tip: The "Loom" Follow‑Up</strong>
+                <p style="margin-top: 0.6rem;">If they reply "Yes," don't just send a link. Record a quick screen-share (Loom or similar) where you show their website, show a successful competitor's flow, and mock up what their email could look like if redesigned.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footnote">
+        <span>🔹 <strong>e‑commerce first — abandoned cart is the wedge</strong></span>
+        <span>📌 "Revenue Gap" template stands alone above</span>
+    </div>
+</div>
+<p style="text-align: center; margin-top: 1rem; color: #48658a; font-size: 0.85rem;">share with the team · 2026 · high-end email marketing for DTC</p>
+</body>
+</html>
