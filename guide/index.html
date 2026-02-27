@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>2026 Agency Playbook · home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #eef2f7;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #152b40;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+        .home-container {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 3rem;
+            box-shadow: 0 30px 55px -20px rgba(0,20,45,0.25);
+            overflow: hidden;
+            padding: 3rem 3rem 4rem 3rem;
+        }
+        .badge {
+            background: #1d4e7c;
+            color: white;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #0b263f;
+            max-width: 800px;
+        }
+        .subhead {
+            font-size: 1.3rem;
+            color: #2f5275;
+            margin-top: 1.2rem;
+            margin-bottom: 3rem;
+            background: #e9f0fa;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, #c0d4ec, transparent);
+            margin: 2.5rem 0 2.8rem 0;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 2rem;
+        }
+        .card {
+            background: #f6faff;
+            border-radius: 2.5rem;
+            padding: 2.5rem 2rem;
+            border: 1px solid #caddf0;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 20px -10px rgba(27, 56, 92, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #6688b0;
+            box-shadow: 0 25px 30px -12px #1d385360;
+        }
+        .card-icon {
+            background: #1d3d64;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .card h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #123153;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+        .card .file-name {
+            font-family: 'Inter', monospace;
+            background: #e3eefb;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0e3d6b;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            border: 1px solid #98b9dd;
+        }
+        .card p {
+            color: #1f3f61;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
+            flex-grow: 1;
+        }
+        .btn {
+            background: white;
+            border: 1.5px solid #1f4a7a;
+            color: #1f4a7a;
+            padding: 0.9rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.15s;
+            width: fit-content;
+        }
+        .btn:hover {
+            background: #1f4a7a;
+            color: white;
+            border-color: #1f4a7a;
+        }
+        .btn i {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+        .feature-note {
+            background: #e3efff;
+            border-radius: 28px;
+            padding: 1.8rem 2.5rem;
+            margin-top: 3rem;
+            border-left: 6px solid #2660a5;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .feature-note p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #13324f;
+        }
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .pill {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1f4a7a;
+            border: 1px solid #9db9db;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: #4d6f94;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 700px) {
+            .home-container { padding: 2rem 1.5rem; }
+            h1 { font-size: 2.2rem; }
+            .subhead { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="home-container">
+    
+    <span class="badge">📋 playbook suite · 2026</span>
+    <h1>High‑end email marketing<br>for DTC & e‑commerce</h1>
+    <div class="subhead">two complete strategy guides — explained for the whole team</div>
+
+    <div class="divider"></div>
+
+    <!-- card grid linking the two files -->
+    <div class="cards-grid">
+        
+        <!-- Card 1: main agency playbook -->
+        <div class="card">
+            <div class="card-icon">📘</div>
+            <h2>Full agency playbook</h2>
+            <span class="file-name">2026-agency-playbook.html</span>
+            <p>End‑to‑end framework: precision prospecting, high‑value outreach, closing proposals, and seamless onboarding. Plain language, no jargon.</p>
+            <a href="2026-agency-playbook.html" class="btn" target="_blank" rel="noopener">open playbook <i>→</i></a>
+        </div>
+
+        <!-- Card 2: e‑commerce gap template (standalone) -->
+        <div class="card">
+            <div class="card-icon">📦</div>
+            <h2>Revenue gap template</h2>
+            <span class="file-name">e-commerce-gap-template.html</span>
+            <p>DTC‑focused outreach that sells the gap, not your service. Includes the full email template, breakdown, and Loom follow‑up pro‑tip.</p>
+            <a href="e-commerce-gap-template.html" class="btn" target="_blank" rel="noopener">open template <i>→</i></a>
+        </div>
+    </div>
+
+    <!-- feature summary / what’s inside -->
+    <div class="feature-note">
+        <p>⚡ 2026 intent‑based strategy — both files fully responsive, team‑ready</p>
+        <div class="pill-list">
+            <span class="pill">🔍 trigger events</span>
+            <span class="pill">📬 golden frame</span>
+            <span class="pill">📈 business case</span>
+            <span class="pill">🛒 abandoned cart</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        ⬇️ click any card to open the full guide · share with the team
+    </div>
+
+</div>
+<!-- small credit (optional) -->
+<p style="margin-top: 1.2rem; color: #6783a1; font-size: 0.85rem;">high-end email marketing · 2026 agency toolkit</p>
+</body>
+</html>
