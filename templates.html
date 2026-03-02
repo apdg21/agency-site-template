@@ -31,19 +31,24 @@
             box-shadow: 0 24px 36px rgba(0, 20, 40, 0.12);
         }
 
-        .iframe-container {
+        .image-container {
             height: 300px;
             overflow: hidden;
             background: #f1f5f9;
             border-bottom: 1px solid #e2e8f0;
+            position: relative;
         }
 
-        .template-card iframe {
+        .template-thumbnail {
             width: 100%;
             height: 100%;
-            border: none;
-            display: block;
-            pointer-events: none;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.3s ease;
+        }
+
+        .template-card:hover .template-thumbnail {
+            transform: scale(1.05);
         }
 
         .template-info {
@@ -157,7 +162,7 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             animation: modalFadeIn 0.3s;
             padding: 28px 28px 36px;
-            margin-top: 250px;
+            margin-top: 60px;
         }
 
         @keyframes modalFadeIn {
@@ -169,20 +174,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
         }
 
         .modal-header h3 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: #003a70;
             margin: 0;
         }
 
         .close-modal {
-            font-size: 2.6rem;
+            font-size: 3rem;
             font-weight: 300;
             color: #4b5563;
             cursor: pointer;
@@ -198,9 +203,9 @@
         .preview-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 28px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .desktop-col {
@@ -208,7 +213,7 @@
             min-width: 320px;
             background: #f8fafc;
             border-radius: 24px;
-            padding: 20px 20px 24px;
+            padding: 25px;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
         }
 
@@ -218,28 +223,28 @@
             max-width: 380px;
             background: #f8fafc;
             border-radius: 24px;
-            padding: 20px 16px 24px;
+            padding: 25px;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
         }
 
         .col-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 20px;
             font-weight: 600;
             color: #003a70;
-            border-bottom: 1px dashed #cbd5e1;
-            padding-bottom: 12px;
+            border-bottom: 2px dashed #cbd5e1;
+            padding-bottom: 15px;
         }
 
         .col-header i {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: #003a70;
         }
 
         .col-header span {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .desktop-frame {
@@ -249,55 +254,59 @@
             box-shadow: 0 12px 28px rgba(0,0,0,0.12);
             border: 1px solid #d1d9e6;
             width: 100%;
+            height: 600px;
         }
 
         .desktop-frame iframe {
             width: 100%;
-            height: 600px;
+            height: 100%;
             border: none;
             display: block;
         }
 
         .mobile-frame {
             background: white;
-            max-width: 360px;
+            max-width: 320px;
             width: 100%;
             margin: 0 auto;
             border-radius: 32px;
-            border: 6px solid #1e293b;
+            border: 8px solid #1e293b;
             overflow: hidden;
             box-shadow: 0 18px 30px rgba(0,0,0,0.2);
+            height: 600px;
         }
 
         .mobile-frame iframe {
             width: 100%;
-            height: 600px;
+            height: 100%;
             border: none;
             display: block;
-            border-radius: 26px;
         }
 
         .modal-footer {
-            margin-top: 36px;
+            margin-top: 40px;
             text-align: center;
         }
 
         .btn-full {
-            background: transparent;
-            border: 1.5px solid #003a70;
-            color: #003a70;
-            padding: 12px 32px;
+            background: #003a70;
+            border: none;
+            color: white;
+            padding: 14px 40px;
             border-radius: 60px;
             font-weight: 700;
+            font-size: 1.1rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: 0.2s;
+            cursor: pointer;
         }
         .btn-full:hover {
-            background: #003a70;
-            color: white;
+            background: #006fba;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,55,110,0.2);
         }
 
         /* Template features section */
@@ -311,8 +320,8 @@
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px;
+            gap: 12px;
+            padding: 12px 15px;
             background: #f8fafc;
             border-radius: 12px;
         }
@@ -320,6 +329,26 @@
         .feature-item i {
             color: #006fba;
             font-size: 1.2rem;
+        }
+
+        /* No templates message */
+        .no-templates {
+            text-align: center;
+            padding: 60px;
+            background: white;
+            border-radius: 30px;
+            grid-column: 1 / -1;
+        }
+
+        .no-templates i {
+            font-size: 4rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .no-templates h3 {
+            color: #4b5563;
+            font-size: 1.5rem;
         }
 
         /* Responsive */
@@ -352,9 +381,6 @@
             .mobile-frame {
                 max-width: 100%;
                 width: 100%;
-            }
-            
-            .mobile-frame iframe {
                 height: 550px;
             }
             
@@ -364,12 +390,17 @@
             }
             
             .modal-header h3 {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
+            }
+            
+            .modal-header {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            .mobile-frame iframe {
+            .mobile-frame {
                 height: 500px;
             }
             
@@ -379,7 +410,20 @@
             
             .pagination {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
+            }
+            
+            .pagination button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .col-header span {
+                font-size: 1rem;
+            }
+            
+            .modal-header h3 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -404,7 +448,7 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="services.html" class="nav-link">Services</a>
             <a href="about.html" class="nav-link">About us</a>
-            <a href="templates.html" class="nav-link">Templates</a>
+            <a href="templates.html" class="nav-link active">Templates</a>
             <a href="contact.html" class="nav-link">Contact</a>
             <a href="contact.html" class="btn-outline">Get quote</a>
         </div>
@@ -493,7 +537,7 @@
             </div>
 
             <div class="modal-footer">
-                <a id="fullTemplateLink" href="#" target="_blank" class="btn-full">
+                <a id="fullTemplateLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-full">
                     <i class="fas fa-external-link-alt"></i> Open full template
                 </a>
             </div>
@@ -523,45 +567,51 @@
         (function() {
             "use strict";
 
-            // ---------- TEMPLATES DATASET (with sample email URLs) ----------
+            // ---------- TEMPLATES DATASET (thumbnail + iframe) ----------
             const templates = [
                 {
                     id: 1,
                     title: "Email #1",
+                    thumbnail: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80",
                     iframeSrc: "https://htq.soundestlink.com/ce/v/0/699fe94717a82547b260a41a",
                     fullLink: "https://htq.soundestlink.com/ce/v/0/699fe94717a82547b260a41a"
                 },
                 {
                     id: 2,
                     title: "Email #2",
+                    thumbnail: "https://app.omnisend.com/image/newsletter/695f62ef452ca750a8a624fe",
                     iframeSrc: "https://htq.soundestlink.com/ce/v/0/6960b533ea8f5b0d3ca2d45e",
                     fullLink: "https://htq.soundestlink.com/ce/v/0/6960b533ea8f5b0d3ca2d45e"
                 },
                 {
                     id: 3,
                     title: "Email #3",
+                    thumbnail: "https://app.omnisend.com/image/newsletter/6998099fa6bcf65213181191?auto=format&fit=crop&w=600&q=80",
                     iframeSrc: "https://htq.soundestlink.com/ce/v/0/69980fd920810ef02c8529a7",
                     fullLink: "https://htq.soundestlink.com/ce/v/0/69980fd920810ef02c8529a7"
                 },
                 {
                     id: 4,
-                    title: "Email #3",
+                    title: "Email #4",
+                    thumbnail: "https://app.omnisend.com/image/newsletter/698ed7bc9332cf319e3dc6b5",
                     iframeSrc: "https://mow.soundestlink.com/ce/v/0/698ee1c156888fa29ace10fc",
                     fullLink: "https://mow.soundestlink.com/ce/v/0/698ee1c156888fa29ace10fc"
                 },
-				{
+                {
                     id: 5,
-                    title: "Email #3",
+                    title: "Email #5",
+                    thumbnail: "https://app.omnisend.com/image/newsletter/698aea73597b6d20df62da6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
                     iframeSrc: "https://mow.soundestlink.com/ce/v/0/698c28e06b0986d947813f3c",
                     fullLink: "https://mow.soundestlink.com/ce/v/0/698c28e06b0986d947813f3c"
                 },
-				{
+                {
                     id: 6,
-                    title: "Email #3",
+                    title: "Email #6",
+                    thumbnail: "https://app.omnisend.com/image/newsletter/698c3577d9ce8b5649150d22",
                     iframeSrc: "https://mow.soundestlink.com/ce/v/0/698ed1df56888fa29ace0f9d",
                     fullLink: "https://mow.soundestlink.com/ce/v/0/698ed1df56888fa29ace0f9d"
-                },
-            ];
+                }
+               ];
 
             // ---------- PAGINATION (9 per page = 3x3 grid) ----------
             const ITEMS_PER_PAGE = 9;
@@ -580,7 +630,7 @@
             const fullLinkEl = document.getElementById('fullTemplateLink');
             const closeModalBtn = document.querySelector('.close-modal');
 
-            // ---------- RENDER GRID (3x3 paginated) ----------
+            // ---------- RENDER GRID (3x3 paginated with thumbnails) ----------
             function renderTemplates() {
                 const totalPages = Math.ceil(templates.length / ITEMS_PER_PAGE) || 1;
                 if (currentPage > totalPages) currentPage = totalPages;
@@ -590,26 +640,35 @@
                 const end = start + ITEMS_PER_PAGE;
                 const pageItems = templates.slice(start, end);
 
-                let html = '';
-                pageItems.forEach(template => {
-                    html += `
-                        <div class="template-card">
-                            <div class="iframe-container">
-                                <iframe src="${template.iframeSrc}" title="${template.title}" loading="lazy"></iframe>
-                            </div>
-                            <div class="template-info">
-                                <h3 class="template-title">${template.title}</h3>
-                                <button class="btn-preview" 
-                                    data-iframe-src="${template.iframeSrc}" 
-                                    data-full-link="${template.fullLink}"
-                                    data-title="${template.title}">
-                                    <i class="fas fa-expand"></i> Preview
-                                </button>
-                            </div>
+                if (pageItems.length === 0) {
+                    gridEl.innerHTML = `
+                        <div class="no-templates">
+                            <i class="fas fa-images"></i>
+                            <h3>No templates to display</h3>
                         </div>
                     `;
-                });
-                gridEl.innerHTML = html;
+                } else {
+                    let html = '';
+                    pageItems.forEach(template => {
+                        html += `
+                            <div class="template-card">
+                                <div class="image-container">
+                                    <img src="${template.thumbnail}" alt="${template.title}" class="template-thumbnail" loading="lazy">
+                                </div>
+                                <div class="template-info">
+                                    <h3 class="template-title">${template.title}</h3>
+                                    <button class="btn-preview" 
+                                        data-iframe-src="${template.iframeSrc}" 
+                                        data-full-link="${template.fullLink}"
+                                        data-title="${template.title}">
+                                        <i class="fas fa-expand"></i> Preview
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    gridEl.innerHTML = html;
+                }
 
                 pageIndicator.textContent = `Page ${currentPage} / ${totalPages}`;
                 prevBtn.disabled = currentPage === 1;
@@ -618,19 +677,27 @@
                 attachPreviewEvents();
             }
 
-            // ---------- PREVIEW BUTTON: open modal, set both iframes ----------
+            // ---------- PREVIEW BUTTON: open modal, load iframes ----------
             function attachPreviewEvents() {
                 document.querySelectorAll('.btn-preview').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.preventDefault();
+                        e.stopPropagation();
+                        
                         const iframeSrc = this.dataset.iframeSrc;
                         const fullLink = this.dataset.fullLink;
                         const title = this.dataset.title;
 
                         modalTitle.textContent = title || 'Email Template';
+                        
+                        // Load iframes
                         pcIframe.src = iframeSrc;
                         mobileIframe.src = iframeSrc;
+                        
                         fullLinkEl.href = fullLink;
+                        fullLinkEl.setAttribute('href', fullLink);
+                        fullLinkEl.target = '_blank';
+                        fullLinkEl.rel = 'noopener noreferrer';
 
                         modal.style.display = 'flex';
                     });
@@ -676,6 +743,7 @@
                 modal.style.display = 'none';
                 pcIframe.src = '';
                 mobileIframe.src = '';
+                fullLinkEl.href = '#';
             }
 
             // ---------- INIT ----------
@@ -687,6 +755,6 @@
             window.templatesData = templates;
         })();
     </script>
-	<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
