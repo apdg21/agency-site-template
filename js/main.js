@@ -165,8 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initTemplatePreview();
     initContactForm();
     
-    // Add smooth scrolling for anchor links
+    // Add smooth scrolling ONLY for internal anchor links that aren't modal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Skip if it's the modal link or has btn-full class
+        if (anchor.id === 'fullTemplateLink' || anchor.classList.contains('btn-full')) {
+            return; // Skip this anchor
+        }
+        
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
