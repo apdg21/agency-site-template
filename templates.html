@@ -351,61 +351,45 @@
             font-size: 1.5rem;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .templates-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .mobile-view-only {
+                display: none;
             }
         }
 
+        /* Mobile styles - direct link instead of modal */
         @media (max-width: 768px) {
+            /* Hide modal completely on mobile */
+            .modal {
+                display: none !important;
+            }
+            
+            /* Style the preview button to be a direct link */
+            .btn-preview {
+                background: #003a70;
+                color: white;
+                text-decoration: none;
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .btn-preview i {
+                margin-right: 5px;
+            }
+            
             .templates-grid {
                 grid-template-columns: 1fr;
             }
             
-            .desktop-col {
-                display: none !important;
-            }
-            
-            .mobile-col {
-                max-width: 100%;
-                flex: 1 1 100%;
-                width: 100%;
-            }
-            
-            .preview-row {
+            .template-info {
                 flex-direction: column;
-                align-items: center;
+                gap: 15px;
             }
             
-            .mobile-frame {
-                max-width: 100%;
+            .btn-preview {
                 width: 100%;
-                height: 550px;
-            }
-            
-            .modal-content {
-                padding: 20px 16px;
-                margin-top: 30px;
-            }
-            
-            .modal-header h3 {
-                font-size: 1.5rem;
-            }
-            
-            .modal-header {
-                margin-bottom: 15px;
-                padding-bottom: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .mobile-frame {
-                height: 500px;
-            }
-            
-            .modal {
-                padding: 16px;
             }
             
             .pagination {
@@ -416,6 +400,16 @@
             .pagination button {
                 width: 100%;
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-frame {
+                height: 500px;
+            }
+            
+            .modal {
+                padding: 16px;
             }
             
             .col-header span {
@@ -504,7 +498,7 @@
         </div>
     </main>
 
-    <!-- Modal for Desktop & Mobile Preview -->
+    <!-- Modal for Desktop & Mobile Preview (DESKTOP ONLY) -->
     <div id="previewModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -611,7 +605,7 @@
                     iframeSrc: "https://mow.soundestlink.com/ce/v/0/698ed1df56888fa29ace0f9d",
                     fullLink: "https://mow.soundestlink.com/ce/v/0/698ed1df56888fa29ace0f9d"
                 }
-               ];
+            ];
 
             // ---------- PAGINATION (9 per page = 3x3 grid) ----------
             const ITEMS_PER_PAGE = 9;
@@ -629,6 +623,11 @@
             const mobileIframe = document.getElementById('mobilePreviewIframe');
             const fullLinkEl = document.getElementById('fullTemplateLink');
             const closeModalBtn = document.querySelector('.close-modal');
+
+            // Check if mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
 
             // ---------- RENDER GRID (3x3 paginated with thumbnails) ----------
             function renderTemplates() {
@@ -677,29 +676,41 @@
                 attachPreviewEvents();
             }
 
-            // ---------- PREVIEW BUTTON: open modal, load iframes ----------
+            // ---------- PREVIEW BUTTON: different behavior for mobile vs desktop ----------
             function attachPreviewEvents() {
                 document.querySelectorAll('.btn-preview').forEach(btn => {
-                    btn.addEventListener('click', function(e) {
+                    // Remove any existing event listeners by cloning and replacing
+                    const newBtn = btn.cloneNode(true);
+                    btn.parentNode.replaceChild(newBtn, btn);
+                    
+                    newBtn.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        const iframeSrc = this.dataset.iframeSrc;
                         const fullLink = this.dataset.fullLink;
                         const title = this.dataset.title;
-
-                        modalTitle.textContent = title || 'Email Template';
                         
-                        // Load iframes
-                        pcIframe.src = iframeSrc;
-                        mobileIframe.src = iframeSrc;
-                        
-                        fullLinkEl.href = fullLink;
-                        fullLinkEl.setAttribute('href', fullLink);
-                        fullLinkEl.target = '_blank';
-                        fullLinkEl.rel = 'noopener noreferrer';
+                        // Check if mobile
+                        if (isMobile()) {
+                            // On mobile: direct link to the email
+                            window.open(fullLink, '_blank', 'noopener,noreferrer');
+                        } else {
+                            // On desktop: show modal with iframes
+                            const iframeSrc = this.dataset.iframeSrc;
+                            
+                            modalTitle.textContent = title || 'Email Template';
+                            
+                            // Load iframes
+                            pcIframe.src = iframeSrc;
+                            mobileIframe.src = iframeSrc;
+                            
+                            fullLinkEl.href = fullLink;
+                            fullLinkEl.setAttribute('href', fullLink);
+                            fullLinkEl.target = '_blank';
+                            fullLinkEl.rel = 'noopener noreferrer';
 
-                        modal.style.display = 'flex';
+                            modal.style.display = 'flex';
+                        }
                     });
                 });
             }
@@ -724,7 +735,7 @@
                 });
             }
 
-            // ---------- MODAL: CLOSE (x, outside, ESC) ----------
+            // ---------- MODAL: CLOSE (x, outside, ESC) - DESKTOP ONLY ----------
             function setupModal() {
                 closeModalBtn.addEventListener('click', closeModal);
                 
@@ -733,7 +744,7 @@
                 });
                 
                 document.addEventListener('keydown', (e) => { 
-                    if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    if (e.key === 'Escape' && modal.style.display === 'flex' && !isMobile()) {
                         closeModal();
                     }
                 });
@@ -745,6 +756,20 @@
                 mobileIframe.src = '';
                 fullLinkEl.href = '#';
             }
+
+            // Handle resize events (switching between mobile/desktop)
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // If modal is open and we're on mobile, close it
+                    if (isMobile() && modal.style.display === 'flex') {
+                        closeModal();
+                    }
+                    // Re-attach events to update behavior
+                    attachPreviewEvents();
+                }, 250);
+            });
 
             // ---------- INIT ----------
             renderTemplates();
