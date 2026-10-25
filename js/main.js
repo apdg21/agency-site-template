@@ -138,7 +138,7 @@ function initContactForm() {
     
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('📨 Thank you for your message! (Demo: this would be sent to the agency)');
+        alert('Thanks for trying the demo. This form is a visual prototype and does not send or store messages.');
         contactForm.reset();
     });
 }
